@@ -7,10 +7,11 @@ class WorldTime {
   String location; //Location displayed on the UI
   String flag; //Asset image url for the location flag
   String url; //Location url
+  String time;
   bool
-      isDayTime; //Set is day time to true or false based on the hour of the day
+      isDayTime; //Set is day.png time to true or false based on the hour of the day.png
 
-  WorldTime(this.location, this.flag, this.url);
+  WorldTime({this.location, this.flag, this.url});
 
   Future<Map> getTime() async {
     try {
@@ -22,11 +23,11 @@ class WorldTime {
           .add(Duration(hours: int.parse(map["utc_offset"].substring(1, 3))));
 
       isDayTime = datetime.hour > 6 && datetime.hour < 20;
-
+      time = DateFormat.jm().format(datetime);
       return {
         "location": location,
         "flag": flag,
-        "time": DateFormat.jm().format(datetime),
+        "time": time,
         "is_day_time": isDayTime
       };
     } catch (e) {

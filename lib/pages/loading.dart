@@ -26,7 +26,8 @@ class _LoadingState extends State<Loading> {
   }
 
   void setupWorldTime() async {
-    WorldTime worldTime = WorldTime("Kenya", "kenya.png", 'Africa/Nairobi');
+    WorldTime worldTime =
+        WorldTime(location: "Kenya", flag: "kenya.png", url: 'Africa/Nairobi');
     Map result = await worldTime.getTime();
     Navigator.pushNamed(context, "/home", arguments: result);
   }
